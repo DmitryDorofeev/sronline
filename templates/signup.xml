@@ -1,0 +1,7 @@
+<fest:template xmlns:fest="http://fest.mail.ru">
+	<form action="/signup" method="POST">
+		<input type="text" name="email"/>
+		<input type="password" name="password"/>
+		<button type="submit">Зарегестрироваться</button>
+	</form>
+</fest:template>

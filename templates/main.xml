@@ -1,0 +1,8 @@
+<fest:template xmlns:fest="http://fest.mail.ru">
+    <div>
+    	<span onclick="showLoginScreen();">LOGIN</span>
+    </div>
+    <div>
+    	<span onclick="showSignUpScreen();">SignUp</span>
+    </div>
+</fest:template>
