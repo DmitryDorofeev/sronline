@@ -6,7 +6,10 @@ define([
 	'tmpl/game',
 	'tmpl/login',
 	'tmpl/signup'
-], function($, _, Backbone, mainTmpl) {
+], function($, _, Backbone) {
+
+	$page = $('#page');
+
 	var Router = Backbone.Router.extend({
 		routes: {
 			"": "index",
@@ -15,16 +18,16 @@ define([
 			"signup": "signup"
 		},
 		index: function() {
-			$('#page').html(mainTmpl());
+			$page.html(mainTmpl()); //так и оставим
 		},
 		game: function() {
-			$('#page').html(gameTmpl());
+			$page.html(gameTmpl()); // тут будет инициализация GameView
 		},
 		login: function() {
-			$('#page').html(loginTmpl());
+			$page.html(loginTmpl()); // здесь будет LoginView
 		},
 		signup: function() {
-			$('#page').html(signupTmpl());
+			$page.html(signupTmpl()); // SignupView
 		}
 	});
 
