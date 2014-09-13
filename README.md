@@ -5,4 +5,7 @@
 Учебный период: осенний семестр 2014г.
 
 ##Студенты
-Dorofeev Dmitry dmitrydorofeev me@dmitrydorofeev.ru
+Дорофеев Дмитрий dmitrydorofeev me@dmitrydorofeev.ru
+Сурков Андрей
+Кобзистый Константин
+Рассказов Константин
