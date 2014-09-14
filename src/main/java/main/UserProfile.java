@@ -6,11 +6,16 @@ package main;
 public class UserProfile {
     private String email;
     private String password;
-    private Long userId;
+    private String login;
 
-    public UserProfile(String email, String password) {
+    public UserProfile(String login, String email, String password) {
         this.email = email;
         this.password = password;
+        this.login = login;
+    }
+
+    public String getLogin() {
+        return login;
     }
 
     public String getEmail() {

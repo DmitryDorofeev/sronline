@@ -1,6 +1,5 @@
 package main;
 
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,13 +10,21 @@ public class AccountService {
     public Map<String, UserProfile> sessions = new HashMap<>();
     public Map<String, UserProfile> users = new HashMap<>();
 
-    public String register(UserProfile profile, String sessionId) {
-        if (users.get(sessionId) == null) {
-            return "User logined!!";
+    public CodeResponses register(UserProfile profile) {
+
+        String login = profile.getLogin();
+
+        if (users.get(login) != null) {
+            return CodeResponses.REGISTRED;
         }
         else {
-            users.put(sessionId, profile);
-            return "OK";
+            users.put(login, profile);
+            return CodeResponses.OK;
         }
+    }
+
+    public CodeResponses login(UserProfile profile, String sessionId) {
+        sessions.put(sessionId, profile);
+        return CodeResponses.OK;
     }
 }
