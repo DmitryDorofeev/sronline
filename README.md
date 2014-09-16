@@ -6,6 +6,9 @@
 
 ##Студенты
 Дорофеев Дмитрий dmitrydorofeev me@dmitrydorofeev.ru
-Сурков Андрей
+
+Сурков Андрей cookwer cookwer@gmail.com
+
 Кобзистый Константин
+
 Рассказов Константин
