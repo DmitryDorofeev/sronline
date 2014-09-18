@@ -5,24 +5,20 @@ require.config({
         'backbone': 'lib/backbone'
     },
     shim: {
-        'tmpl/main': {
-            exports: 'mainTmpl'
+        'backbone': {
+            deps: ['underscore', 'jquery'],
+            exports: 'Backbone'
         },
-        'tmpl/game': {
-            exports: 'gameTmpl'
-        },
-        'tmpl/login': {
-            exports: 'loginTmpl'
-        },
-        'tmpl/signup': {
-            exports: 'signupTmpl'
+        'underscore': {
+            exports: '_'
         }
     }
 })
 
-require(['jquery','backbone','routes/routes'], function($, Backbone, Router) {
-    var router = new Router()
-    Backbone.history.start()
+require(['jquery','backbone','routes/routes'], function($, Backbone, router) {
+
+    Backbone.history.start();
+    
     var login, password
     $('#login_form').submit(function(e){
 	    e.preventDefault()

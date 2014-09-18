@@ -1,12 +1,12 @@
 define([
 	'jquery',
-	'underscore',
 	'backbone',
 	'tmpl/main',
-	'tmpl/game',
-	'tmpl/login',
-	'tmpl/signup'
-], function($, _, Backbone) {
+	'views/game',
+	'views/login',
+	'views/signup'
+	'views/scoreboard'
+], function($, Backbone, main, gameView, loginView, signupView, scoreboardView) {
 
 	$page = $('#page');
 
@@ -16,20 +16,24 @@ define([
 			"game": "game",
 			"login": "login",
 			"signup": "signup"
+			"scoreboard": "scoreboard"
 		},
 		index: function() {
-			$page.html(mainTmpl()); //так и оставим
+			$page.html(main()); //так и оставим. Пока..
 		},
 		game: function() {
-			$page.html(gameTmpl()); // тут будет инициализация GameView
+			gameView.render();
 		},
 		login: function() {
-			$page.html(loginTmpl()); // здесь будет LoginView
+			loginView.render();
 		},
 		signup: function() {
-			$page.html(signupTmpl()); // SignupView
+			signupView.render();
+		},
+		scoreboard: function() {
+			scoreboardView.render();
 		}
 	});
 
-	return Router;
+	return new Router();
 })
