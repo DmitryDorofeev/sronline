@@ -1,8 +1,6 @@
 <fest:template xmlns:fest="http://fest.mail.ru">
-    <div>
-    	<a href="#login">LOGIN</a>
-    </div>
-    <div>
-    	<a href="#signup">SignUp</a>
+    <div class="wrap">
+    	<div class="title">SPACE RANGERS</div>
+    	<a class="button__play" href="#game">Играть</a>
     </div>
 </fest:template>

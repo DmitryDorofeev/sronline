@@ -36,7 +36,7 @@ public class SignUpServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         UserProfile profile = new UserProfile(login, email, password);
-
+        System.out.print("ok ");
         CodeResponses resp = accountService.register(profile);
         if (resp == CodeResponses.OK)
             response.getWriter().println("OK");

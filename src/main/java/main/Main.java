@@ -29,10 +29,9 @@ public class Main {
         Server server = new Server(port);
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.addServlet(new ServletHolder(frontend), "/api/v1/auth/signin");
-
         AccountService accountService = new AccountService();
         Servlet signUp = new SignUpServlet(accountService);
-        context.addServlet(new ServletHolder(signUp), "/signup");
+        context.addServlet(new ServletHolder(signUp), "/api/v1/auth/signup");
 
         ResourceHandler resource_handler = new ResourceHandler();
         resource_handler.setDirectoriesListed(true);
