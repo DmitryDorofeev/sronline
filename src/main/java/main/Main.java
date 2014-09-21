@@ -1,6 +1,7 @@
 package main;
 
 import admin.AdminPageServlet;
+import dao.PlayerDao;
 import frontend.Frontend;
 import frontend.SignUpServlet;
 import org.eclipse.jetty.server.Handler;
@@ -9,15 +10,14 @@ import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import table.Player;
 
 import javax.servlet.Servlet;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        //int port = 8000;
         if (args.length != 1) {
-//            String portString = args[0];
-//            port = Integer.valueOf(portString);
             System.out.append("Use port as the first argument");
             System.exit(1);
         }
@@ -25,7 +25,19 @@ public class Main {
         String portString = args[0];
         int port = Integer.valueOf(portString);
         System.out.append("Starting at port: ").append(String.valueOf(port)).append('\n');
+        ////////////// Это шняга не работает почему-то, не находит конфиг файл :(((
+//        Factory factory = Factory.getInstance();
+//        PlayerDao playerDao = factory.getPlayerDao();
+//
+//        List<Player> players = playerDao.getPlayers();
+//
+//        System.out.println("id  login   pass");
+//
+//        for(Player player : players) {
+//            System.out.println(player.getId() + " " + player.getLogin() + " " + player.getPass());
+//        }
 
+        ////////
         Servlet frontend = new Frontend();
 
         Server server = new Server(port);

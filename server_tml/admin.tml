@@ -3,7 +3,8 @@
 	<title>Admin page</title>
 </head>
 <body>
-<p>Server administration page</p>
-<p>Server status: ${status}</p>
+<p>Статус сервера: ${status}</p>
+<p>Онлайн: 0</p>
+<a href="admin?shutdown=1000"><input type="button" value="Выключение"></a>
 </body>
 </html>
