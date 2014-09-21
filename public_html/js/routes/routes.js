@@ -4,7 +4,7 @@ define([
 	'tmpl/main',
 	'views/game',
 	'views/login',
-	'views/signup'
+	'views/signup',
 	'views/scoreboard'
 ], function($, Backbone, main, gameView, loginView, signupView, scoreboardView) {
 
@@ -15,7 +15,7 @@ define([
 			"": "index",
 			"game": "game",
 			"login": "login",
-			"signup": "signup"
+			"signup": "signup",
 			"scoreboard": "scoreboard"
 		},
 		index: function() {

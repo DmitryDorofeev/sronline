@@ -14,17 +14,27 @@ public class AccountService {
 
         String login = profile.getLogin();
 
-        if (users.get(login) != null) {
+        if (this.users.get(login) != null) {
             return CodeResponses.REGISTRED;
         }
         else {
-            users.put(login, profile);
+            this.users.put(login, profile);
+            System.out.println(this.users.toString());
             return CodeResponses.OK;
         }
     }
 
     public CodeResponses login(UserProfile profile, String sessionId) {
-        sessions.put(sessionId, profile);
-        return CodeResponses.OK;
+
+        String login = profile.getLogin();
+        System.out.println(login);
+        System.out.println(this.users.toString());
+        if (this.users.get(login) != null) {
+            this.sessions.put(sessionId, profile);
+            return CodeResponses.OK;
+        }
+        else {
+            return CodeResponses.NOT_REGISTRED;
+        }
     }
 }

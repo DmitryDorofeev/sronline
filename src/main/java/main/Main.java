@@ -1,6 +1,7 @@
 package main;
 
 import frontend.Frontend;
+import frontend.LoginServlet;
 import frontend.SignUpServlet;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
@@ -24,12 +25,14 @@ public class Main {
 
         System.out.append("Starting at port: ").append(String.valueOf(port)).append('\n');
 
-        Servlet frontend = new Frontend();
 
         Server server = new Server(port);
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        context.addServlet(new ServletHolder(frontend), "/api/v1/auth/signin");
+
         AccountService accountService = new AccountService();
+
+        Servlet login = new LoginServlet(accountService);
+        context.addServlet(new ServletHolder(login), "/api/v1/auth/signin");
         Servlet signUp = new SignUpServlet(accountService);
         context.addServlet(new ServletHolder(signUp), "/api/v1/auth/signup");
 
