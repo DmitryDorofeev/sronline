@@ -20,18 +20,14 @@ define([
 		},
 		login: function(e) {
 			e.preventDefault();
-			var form = this.$el.find('form');
-			var login = form.find('input[name=login]').val();
-			var password = form.find('input[name=password]').val();
-			var url = form.attr('action');
-			var that = this;
+			var form = this.$el.find('form'),
+			      data = form.serialize(),
+			      url = form.attr('action'),
+			      that = this;
 			$.ajax({
 				url: url,
 				type: "POST",
-				data: {
-					"login": login,
-					"password": password
-				},
+				data: data,
 				dataType: "json",
 				success: function(data) {
 					if (data.status == 200) {

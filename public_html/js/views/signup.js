@@ -20,20 +20,14 @@ define([
 		signup: function(e) {
 			e.preventDefault();
 			var form = this.$el.find('form'),
-			      login = form.find('input[name=login]').val(),
-			      email = form.find('input[name=email]').val(),
-			      password = form.find('input[name=password]').val(),
+			      data = form.serialize(),
 			      url = form.attr('action'),
 			      that = this;
 
 			$.ajax({
 				url: url,
 				type: "POST",
-				data: {
-					"login": login,
-					"email": email,
-					"password": password
-				},
+				data: data,
 				dataType: "json",
 				success: function(data) {
 					if (data.status == 200) {
