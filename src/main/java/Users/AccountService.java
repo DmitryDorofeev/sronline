@@ -32,29 +32,21 @@ public class AccountService {
         String password = profile.getPassword();
         System.out.println(login);
         System.out.println(this.users.toString());
-        if ((this.users.get(login) != null) & (password.equals(this.users.get(login).getPassword()))) {
+        if ((this.users.get(login) != null) && (password.equals(this.users.get(login).getPassword()))) {
             this.sessions.put(sessionId, profile);
             return CodeResponses.OK;
         }
         else {
-            if (password.equals(this.users.get(login).getPassword()))
-                return CodeResponses.NOT_REGISTRED;
-            else
-                return CodeResponses.WRONG_PASSWORD;
+//            if (password.equals(this.users.get(login).getPassword()))
+//                return CodeResponses.NOT_REGISTRED;
+//            else
+                return CodeResponses.NOT_LOGINED;
         }
     }
 
-    public CodeResponses logout(UserProfile profile) {
+    public CodeResponses logout(String sessionId) {
+        sessions.remove(sessionId);
 
-        String login = profile.getLogin();
-        String password = profile.getPassword();
-        System.out.println(login);
-        System.out.println(this.users.toString());
-        if (this.sessions.get(profile) != null) {
-            this.sessions.remove(profile);
-            return CodeResponses.OK;
-        }
-        else
-            return CodeResponses.NOT_LOGINED;
+        return CodeResponses.OK;
     }
 }

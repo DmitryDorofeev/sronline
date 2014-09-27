@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
-        response.setStatus(HttpServletResponse.SC_OK);
+        response.setStatus(HttpServletResponse.SC_OK);// перенести вниз, тк не знаем ок или неок
         HttpSession session = request.getSession();
 
         Map<String, Object> pageVariables = new HashMap<>();
@@ -43,9 +43,13 @@ public class LoginServlet extends HttpServlet {
         UserProfile profile = new UserProfile(login, "", password, "");
         if (accountService.login(profile, session.getId()) == CodeResponses.OK) {
             pageVariables.put("status", 200);
+            pageVariables.put("login", login);
+            pageVariables.put("avatar", login);
         }
         else {
             pageVariables.put("status", 404);
+            pageVariables.put("login", 0);
+            pageVariables.put("avatar", 0);
         }
         response.setHeader("Content-type", "application/json");
 

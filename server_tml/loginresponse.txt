@@ -1,6 +1,5 @@
 {
-"status": ${status}
-"login": ${login}
-"password": ${password} //мой внутренний безопасник негодует!
-"avatar": ${avatar}
+"status": ${status},
+"login": "${login}",
+"avatar": "${avatar}"
 }

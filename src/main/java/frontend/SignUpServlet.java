@@ -3,7 +3,7 @@ package frontend;
 import Users.AccountService;
 import constants.CodeResponses;
 import Users.UserProfile;
-
+import templater.PageGenerator;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

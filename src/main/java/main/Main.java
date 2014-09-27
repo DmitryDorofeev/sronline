@@ -1,7 +1,9 @@
 package main;
 
 import Users.AccountService;
+import admin.AdminPageServlet;
 import frontend.LoginServlet;
+import frontend.LogoutServlet;
 import frontend.SignUpServlet;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
@@ -44,6 +46,11 @@ public class Main {
         context.addServlet(new ServletHolder(login), "/api/v1/auth/signin");
         Servlet signUp = new SignUpServlet(accountService);
         context.addServlet(new ServletHolder(signUp), "/api/v1/auth/signup");
+        Servlet logout = new LogoutServlet(accountService);
+        context.addServlet(new ServletHolder(logout), "/api/v1/auth/logout");
+        Servlet admin = new AdminPageServlet();
+        context.addServlet(new ServletHolder(admin), "/admin");
+
 
         ResourceHandler resource_handler = new ResourceHandler();
         resource_handler.setDirectoriesListed(true);
