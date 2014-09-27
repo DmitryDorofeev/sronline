@@ -36,8 +36,9 @@ public class Frontend extends HttpServlet {
 
 
         Map<String, Object> pageVariables = new HashMap<>();
-        pageVariables.put("email", email == null ? "" : email);
+        pageVariables.put("lo", email == null ? "" : email);
         pageVariables.put("password", password == null ? "" : password);
+        response.setHeader("Content-type", "application/json");
 
         response.getWriter().println(PageGenerator.getPage("authresponse.txt", pageVariables));
     }

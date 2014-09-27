@@ -3,6 +3,7 @@ package frontend;
 import main.AccountService;
 import main.CodeResponses;
 import main.UserProfile;
+import templater.PageGenerator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by dmitry on 13.09.14.
@@ -38,10 +41,17 @@ public class SignUpServlet extends HttpServlet {
         UserProfile profile = new UserProfile(login, email, password);
         System.out.print("ok ");
         CodeResponses resp = accountService.register(profile);
+
+        Map<String, Object> pageVariables = new HashMap<>();
+
         if (resp == CodeResponses.OK)
-            response.getWriter().println("OK");
+            pageVariables.put("status", 200);
         else
-            response.getWriter().println("Already registered");
+            pageVariables.put("status", 404);
+
+        response.setHeader("Content-type", "application/json");
+
+        response.getWriter().println(PageGenerator.getPage("authresponse.txt", pageVariables));
 
 
     }

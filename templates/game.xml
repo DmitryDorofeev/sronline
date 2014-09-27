@@ -1,3 +1,5 @@
 <fest:template xmlns:fest="http://fest.mail.ru">
-	<div class="game__ship"></div>
+	<div class="game__wrap">
+		<div class="game__ship"></div>
+	</div>
 </fest:template>

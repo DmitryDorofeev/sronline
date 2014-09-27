@@ -33,7 +33,7 @@ define([
 					if (data.status == 200) {
 						window.location.href = '#login'
 					}
-					else if (data.status == 400) {
+					else if (data.status == 404) {
 						that.renderError("Такой пользователь уже существует");
 					}
 				},

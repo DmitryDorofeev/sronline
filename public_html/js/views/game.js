@@ -27,7 +27,7 @@ define([
 			      currentX = parseInt(this.$game.css('background-position-x')),
 			      currentY = parseInt(this.$game.css('background-position-y'));
 			this.$game.animate({
-				backgroundPosition: ((currentX-(x-this.centerX))+"px", (currentY-(y-this.centerY))+"px")},{
+				backgroundPosition: ((currentX+(x-this.centerX))+"px", (currentY+(y-this.centerY))+"px")},{
 					duration:3000, step: function (n) {
 						console.log(n);
 						$(this).css('background-position', n + 'px ' + n + 'px');
