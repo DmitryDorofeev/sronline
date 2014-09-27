@@ -9,11 +9,10 @@ public class UserProfile {
     private String login;
     private String avatar;
 
-    public UserProfile(String login, String email, String password, String avatar) {
+    public UserProfile(String login, String email, String password) {
         this.email = email;
         this.password = password;
         this.login = login;
-        this.avatar = avatar;
     }
 
     public String getLogin() {

@@ -1,7 +1,7 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="user">
 	<fest:choose>
 		<fest:when test="user.login != undefined">
-			<button class="header__button header__button_logout">Выход</button>
+			<button class="header__button header__button_red js-logout">Выход</button>
 			<div class="header__text header__text_login"><fest:value>user.login</fest:value></div>
 		</fest:when>
 		<fest:otherwise>

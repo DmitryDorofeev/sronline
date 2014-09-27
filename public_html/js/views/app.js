@@ -1,8 +1,7 @@
 define([
 	'jquery',
-	'underscore',
 	'backbone'
-], function($, _, Backbone) {
+], function($, Backbone) {
 	
 	var AppView = Backbone.View.extend({
 		render: function() {
@@ -10,6 +9,6 @@ define([
 		}
 	});
 
-	return AppView;
+	return new AppView();
 
 });

@@ -3,6 +3,7 @@ package frontend;
 import Users.AccountService;
 import constants.CodeResponses;
 import Users.UserProfile;
+import org.json.simple.JSONObject;
 import templater.PageGenerator;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,25 +34,22 @@ public class SignUpServlet extends HttpServlet {
         String login = request.getParameter("login");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        String avatar = request.getParameter("avatar");
 
         response.setStatus(HttpServletResponse.SC_OK);
-        HttpSession session = request.getSession();
 
-        UserProfile profile = new UserProfile(login, email, password, avatar);
-        System.out.print("ok\n");
+        UserProfile profile = new UserProfile(login, email, password);
         CodeResponses resp = accountService.register(profile);
 
-        Map<String, Object> pageVariables = new HashMap<>();
+        JSONObject output = new JSONObject();
 
         if (resp == CodeResponses.OK)
-            pageVariables.put("status", 200);
+            output.put("status", 200);
         else
-            pageVariables.put("status", 404);
+            output.put("status", 404);
 
         response.setHeader("Content-type", "application/json");
 
-        response.getWriter().println(PageGenerator.getPage("authresponse.txt", pageVariables));
+        response.getWriter().println(output);
 
 
     }

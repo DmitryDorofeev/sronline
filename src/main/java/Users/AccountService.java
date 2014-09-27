@@ -26,22 +26,19 @@ public class AccountService {
         }
     }
 
-    public CodeResponses login(UserProfile profile, String sessionId) {
-
-        String login = profile.getLogin();
-        String password = profile.getPassword();
-        System.out.println(login);
-        System.out.println(this.users.toString());
-        if ((this.users.get(login) != null) && (password.equals(this.users.get(login).getPassword()))) {
-            this.sessions.put(sessionId, profile);
+    public CodeResponses login(String login, String password, String sessionId) {
+        UserProfile currentUser = this.users.get(login);
+        if ((currentUser != null) && (password.equals(currentUser.getPassword()))) {
+            this.sessions.put(sessionId, currentUser);
             return CodeResponses.OK;
         }
         else {
-//            if (password.equals(this.users.get(login).getPassword()))
-//                return CodeResponses.NOT_REGISTRED;
-//            else
-                return CodeResponses.NOT_LOGINED;
+            return CodeResponses.NOT_LOGINED;
         }
+    }
+
+    public UserProfile getCurrentUser(String sessionId) {
+        return this.sessions.get(sessionId);
     }
 
     public CodeResponses logout(String sessionId) {

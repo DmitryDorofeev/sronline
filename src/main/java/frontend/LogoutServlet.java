@@ -3,6 +3,7 @@ package frontend;
 
 import Users.AccountService;
 import constants.CodeResponses;
+import org.json.simple.JSONObject;
 import templater.PageGenerator;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,15 +36,15 @@ public class LogoutServlet extends HttpServlet{
                        HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        Map pageVariables = new HashMap<String, Object>();
+        JSONObject output = new JSONObject();
 
         if (accountService.logout(session.getId()) == CodeResponses.OK) {
-            pageVariables.put("status", 200);
+            output.put("status", 200);
         } else {
-            pageVariables.put("status", 404);
+            output.put("status", 404);
         }
         response.setHeader("Content-type", "application/json");
 
-        response.getWriter().println(PageGenerator.getPage("authresponse.txt", pageVariables));
+        response.getWriter().println(output);
     }
 }

@@ -12,9 +12,17 @@ define([
 		},
 		initialize: function() {
 			this.listenTo(this.model, 'change', this.render);
+
+			// $.ajax({
+			// 	url: "/api/v1/auth/signin",
+			// 	type: "GET",
+			// 	dataType: "json"
+			// }).done(function( data ) {
+			// 	console.log(data);
+			// })
 		},
 		events: {
-			"click .header__button_logout": "logout"
+			"click .js-logout": "logout"
 		},
 		render: function() {
 			this.$el.html(this.template());

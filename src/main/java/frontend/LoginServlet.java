@@ -3,6 +3,7 @@ package frontend;
 import Users.AccountService;
 import constants.CodeResponses;
 import Users.UserProfile;
+import org.json.simple.JSONObject;
 import templater.PageGenerator;
 
 import javax.servlet.ServletException;
@@ -38,21 +39,18 @@ public class LoginServlet extends HttpServlet {
         response.setStatus(HttpServletResponse.SC_OK);// перенести вниз, тк не знаем ок или неок
         HttpSession session = request.getSession();
 
-        Map<String, Object> pageVariables = new HashMap<>();
-
-        UserProfile profile = new UserProfile(login, "", password, "");
-        if (accountService.login(profile, session.getId()) == CodeResponses.OK) {
-            pageVariables.put("status", 200);
-            pageVariables.put("login", login);
-            pageVariables.put("avatar", login);
+        JSONObject output = new JSONObject();
+        if (accountService.login(login, password, session.getId()) == CodeResponses.OK) {
+            UserProfile currentProfile = accountService.getCurrentUser(session.getId());
+            output.put("status", 200);
+            output.put("login", currentProfile.getLogin());
+            output.put("avatar", currentProfile.getAvatar());
         }
         else {
-            pageVariables.put("status", 404);
-            pageVariables.put("login", 0);
-            pageVariables.put("avatar", 0);
+            output.put("status", 404);
         }
         response.setHeader("Content-type", "application/json");
 
-        response.getWriter().println(PageGenerator.getPage("loginresponse.txt", pageVariables));
+        response.getWriter().println(output);
     }
 }
