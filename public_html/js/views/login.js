@@ -1,8 +1,10 @@
 define([
 	'jquery',
 	'backbone',
-	'tmpl/login'
-], function ($, Backbone, tmpl) {
+	'tmpl/login',
+	'models/user',
+	'views/header'
+], function ($, Backbone, tmpl, userModel) {
 	var LoginView = Backbone.View.extend({
 		initialize: function() {
 			this.$page = $('#page');
@@ -31,6 +33,9 @@ define([
 				dataType: "json",
 				success: function(data) {
 					if (data.status == 200) {
+						userModel.set("login", data.login);
+						userModel.set("avatar", data.avatar);
+						console.log(userModel.toJSON());
 						window.location.href = '#game'
 					}
 					else if (data.status == 404) {

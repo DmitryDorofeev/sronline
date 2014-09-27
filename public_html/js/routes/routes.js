@@ -1,12 +1,12 @@
 define([
 	'jquery',
 	'backbone',
-	'tmpl/main',
+	'views/home',
 	'views/game',
 	'views/login',
 	'views/signup',
 	'views/scoreboard'
-], function($, Backbone, main, gameView, loginView, signupView, scoreboardView) {
+], function($, Backbone, homeView, gameView, loginView, signupView, scoreboardView) {
 
 	$page = $('#page');
 
@@ -19,7 +19,7 @@ define([
 			"scoreboard": "scoreboard"
 		},
 		index: function() {
-			$page.html(main()); //так и оставим. Пока..
+			homeView.render();
 		},
 		game: function() {
 			gameView.render();

@@ -1,7 +1,8 @@
 define([
 	'backbone',
 	'tmpl/game',
-], function (Backbone, tmpl) {
+	'models/user'
+], function (Backbone, tmpl, userModel) {
 	var GameView = Backbone.View.extend({
 		className: "game",
 		events: {
@@ -16,6 +17,9 @@ define([
 			return tmpl();
 		},
 		render: function() {
+			if (!userModel.get('login')) {
+				window.location.href = '#login';
+			}
 			this.$el.html(this.template());
 			this.$page.html(this.$el);
 			this.$game = $(".game");
