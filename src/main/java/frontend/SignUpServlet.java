@@ -1,9 +1,8 @@
 package frontend;
 
-import main.AccountService;
-import main.CodeResponses;
-import main.UserProfile;
-import templater.PageGenerator;
+import Users.AccountService;
+import constants.CodeResponses;
+import Users.UserProfile;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -34,12 +33,13 @@ public class SignUpServlet extends HttpServlet {
         String login = request.getParameter("login");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String avatar = request.getParameter("avatar");
 
         response.setStatus(HttpServletResponse.SC_OK);
         HttpSession session = request.getSession();
 
-        UserProfile profile = new UserProfile(login, email, password);
-        System.out.print("ok ");
+        UserProfile profile = new UserProfile(login, email, password, avatar);
+        System.out.print("ok\n");
         CodeResponses resp = accountService.register(profile);
 
         Map<String, Object> pageVariables = new HashMap<>();

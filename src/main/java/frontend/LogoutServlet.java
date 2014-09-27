@@ -1,8 +1,9 @@
+
 package frontend;
 
 import Users.AccountService;
-import constants.CodeResponses;
 import Users.UserProfile;
+import constants.CodeResponses;
 import templater.PageGenerator;
 
 import javax.servlet.ServletException;
@@ -15,13 +16,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by dmitry on 14.09.14.
+ * Created by К on 27.09.2014.
  */
-public class LoginServlet extends HttpServlet {
+public class LogoutServlet extends HttpServlet{
 
     public AccountService accountService;
 
-    public LoginServlet(AccountService accountService) {
+    public LogoutServlet(AccountService accountService) {
         this.accountService = accountService;
     }
 
@@ -41,10 +42,9 @@ public class LoginServlet extends HttpServlet {
         Map<String, Object> pageVariables = new HashMap<>();
 
         UserProfile profile = new UserProfile(login, "", password, "");
-        if (accountService.login(profile, session.getId()) == CodeResponses.OK) {
+        if (accountService.logout(profile) == CodeResponses.OK) {
             pageVariables.put("status", 200);
-        }
-        else {
+        } else {
             pageVariables.put("status", 404);
         }
         response.setHeader("Content-type", "application/json");

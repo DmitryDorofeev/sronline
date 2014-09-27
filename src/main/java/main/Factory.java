@@ -16,7 +16,7 @@ public class Factory {
         return  Factory.instance;
     }
     public PlayerDao getPlayerDao() {
-        if(playerDao == null)playerDao = new PlayerDaoImpl();
+        if (playerDao == null)  playerDao = new PlayerDaoImpl();
         return playerDao;
     }
 }
