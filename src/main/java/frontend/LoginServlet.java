@@ -1,8 +1,8 @@
 package frontend;
 
-import main.AccountService;
-import main.CodeResponses;
-import main.UserProfile;
+import Users.AccountService;
+import constants.CodeResponses;
+import Users.UserProfile;
 import templater.PageGenerator;
 
 import javax.servlet.ServletException;
@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 
         Map<String, Object> pageVariables = new HashMap<>();
 
-        UserProfile profile = new UserProfile(login, "", password);
+        UserProfile profile = new UserProfile(login, "", password, "");
         if (accountService.login(profile, session.getId()) == CodeResponses.OK) {
             pageVariables.put("status", 200);
         }
@@ -49,6 +49,6 @@ public class LoginServlet extends HttpServlet {
         }
         response.setHeader("Content-type", "application/json");
 
-        response.getWriter().println(PageGenerator.getPage("authresponse.txt", pageVariables));
+        response.getWriter().println(PageGenerator.getPage("loginresponse.txt", pageVariables));
     }
 }

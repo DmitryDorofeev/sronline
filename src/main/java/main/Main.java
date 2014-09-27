@@ -1,8 +1,6 @@
 package main;
 
-import admin.AdminPageServlet;
-import dao.PlayerDao;
-import frontend.Frontend;
+import Users.AccountService;
 import frontend.LoginServlet;
 import frontend.SignUpServlet;
 import org.eclipse.jetty.server.Handler;
@@ -11,10 +9,8 @@ import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-import table.Player;
 
 import javax.servlet.Servlet;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws Exception {
