@@ -26,19 +26,19 @@ define([
 
 			$.ajax({
 				url: url,
-				type: "POST",
+				type: 'POST',
 				data: data,
-				dataType: "json",
+				dataType: 'json',
 				success: function(data) {
 					if (data.status == 200) {
-						window.location.href = '#login'
+						window.location.href = '#login';
 					}
 					else if (data.status == 404) {
-						that.renderError("Такой пользователь уже существует");
+						that.renderError('Такой пользователь уже существует');
 					}
 				},
 				error: function() {
-					that.renderError("Неизвестная ошибка. Попробуйте позже.");
+					that.renderError('Неизвестная ошибка. Попробуйте позже.');
 				}
 			});
 		},

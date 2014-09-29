@@ -10,18 +10,16 @@ define([
 			this.$page = $('#page');
 		},
 		events: {
-			"click .button_play": "play"
+			'click .button_play': 'play'
 		},
-		template: function() {
-			return tmpl();
-		},
+		template: tmpl,
 		render: function() {
 			this.$el.html(this.template());
 			this.$page.html(this.$el);
 		},
 		play: function() {
-			if (userModel.get("login")) {
-				alert("logined");
+			if (userModel.get('login')) {
+				alert('logined');
 			}
 			else {
 				window.location.href = '#login';

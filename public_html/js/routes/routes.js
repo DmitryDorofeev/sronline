@@ -8,15 +8,15 @@ define([
 	'views/scoreboard'
 ], function($, Backbone, homeView, gameView, loginView, signupView, scoreboardView) {
 
-	$page = $('#page');
+	var $page = $('#page');
 
 	var Router = Backbone.Router.extend({
 		routes: {
-			"": "index",
-			"game": "game",
-			"login": "login",
-			"signup": "signup",
-			"scoreboard": "scoreboard"
+			'': 'index',
+			'game': 'game',
+			'login': 'login',
+			'signup': 'signup',
+			'scoreboard': 'scoreboard'
 		},
 		index: function() {
 			homeView.render();
@@ -36,4 +36,4 @@ define([
 	});
 
 	return new Router();
-})
+});
