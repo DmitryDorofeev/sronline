@@ -2,7 +2,7 @@ define([
 	'jquery',
 	'backbone',
 	'tmpl/main',
-	'models/user' 
+	'models/user'
 ], function($, Backbone, tmpl, userModel) {
 
 	var homeView = Backbone.View.extend({
@@ -18,8 +18,8 @@ define([
 			this.$page.html(this.$el);
 		},
 		play: function() {
-			if (userModel.get('login')) {
-				alert('logined');
+			if (userModel.get('login') !== undefined) {
+				
 			}
 			else {
 				window.location.href = '#login';

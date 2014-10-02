@@ -1,0 +1,7 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="profile">
+  <div class="wrap">
+    <div class="page__title">Профиль</div>
+    <div><fest:value>profile.email</fest:value></div>
+    <div><img src="{profile.avatar}"/></div>
+  </div>
+</fest:template>

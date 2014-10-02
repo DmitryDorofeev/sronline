@@ -17,9 +17,11 @@ define([
 			return tmpl();
 		},
 		render: function() {
-			if (!userModel.get('login')) {
-				window.location.href = '#login';
-			}
+			userModel.fetch({
+				error: function() {
+					window.location.href = "#login";
+				}
+			});
 			this.$el.html(this.template());
 			this.$page.html(this.$el);
 			this.$game = $(".game");
@@ -37,9 +39,9 @@ define([
 						$(this).css('background-position', n + 'px ' + n + 'px');
 					}
 				}
-			); 
+			);
 		}
 	});
-	
+
 	return new GameView();
 });

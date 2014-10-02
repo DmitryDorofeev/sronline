@@ -12,14 +12,6 @@ define([
 		},
 		initialize: function() {
 			this.listenTo(this.model, 'change', this.render);
-
-			$.ajax({
-				url: '/api/v1/auth/signin',
-				type: 'GET',
-				dataType: 'json'
-			}).done(function( data ) {
-				console.log(data);
-			});
 		},
 		events: {
 			'click .js-logout': 'logout'

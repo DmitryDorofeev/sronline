@@ -1,7 +1,17 @@
 define([
 	'backbone'
 ], function(Backbone) {
-	var UserModel = Backbone.Model.extend({});
+	var UserModel = Backbone.Model.extend({
+		url: "/api/v1/auth/signin",
+		initialize: function() {
 
-	return new UserModel();
+		}
+	});
+
+	var userModel = new UserModel();
+
+	userModel.fetch();
+
+	return userModel;
+
 });

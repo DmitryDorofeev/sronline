@@ -28,7 +28,21 @@ public class LoginServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response) throws ServletException, IOException {
-        response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+        String sessionId = request.getSession().getId();
+        UserProfile currentUser = accountService.getCurrentUser(sessionId);
+        if (currentUser != null) {
+            response.setStatus(HttpServletResponse.SC_OK);
+            JSONObject output = new JSONObject();
+            output.put("login", currentUser.getLogin());
+            output.put("email", currentUser.getEmail());
+            output.put("avatar", currentUser.getAvatar());
+            response.setHeader("Content-type", "application/json");
+
+            response.getWriter().println(output);
+        }
+        else {
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+        }
     }
 
     public void doPost(HttpServletRequest request,
@@ -44,10 +58,11 @@ public class LoginServlet extends HttpServlet {
             UserProfile currentProfile = accountService.getCurrentUser(session.getId());
             output.put("status", 200);
             output.put("login", currentProfile.getLogin());
+            output.put("email", currentProfile.getEmail());
             output.put("avatar", currentProfile.getAvatar());
         }
         else {
-            output.put("status", 404);
+            output.put("status", 403);
         }
         response.setHeader("Content-type", "application/json");
 

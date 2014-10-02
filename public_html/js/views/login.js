@@ -2,8 +2,7 @@ define([
 	'jquery',
 	'backbone',
 	'tmpl/login',
-	'models/user',
-	'views/header'
+	'models/user'
 ], function ($, Backbone, tmpl, userModel) {
 	var LoginView = Backbone.View.extend({
 		initialize: function() {
@@ -12,9 +11,7 @@ define([
 		events: {
 			'submit form': 'login'
 		},
-		template: function() {
-			return tmpl();
-		},
+		template: tmpl,
 		render: function() {
 			this.$el.html(this.template());
 			this.$page.html(this.$el);
@@ -24,7 +21,7 @@ define([
 			e.preventDefault();
 			var form = this.$el.find('form'),
 			      data = form.serialize(),
-			      url = form.attr('action'),
+			      url = form.data('action'),
 			      that = this;
 			$.ajax({
 				url: url,
@@ -35,10 +32,11 @@ define([
 					if (data.status == 200) {
 						userModel.set("login", data.login);
 						userModel.set("avatar", data.avatar);
+						userModel.set("email", data.email);
 						console.log(userModel.toJSON());
 						window.location.href = '#game'
 					}
-					else if (data.status == 404) {
+					else if (data.status == 403) {
 						that.renderError("Пара логин/пароль неверна");
 					}
 				},
@@ -52,6 +50,6 @@ define([
 			this.$error.text(msg);
 		}
 	});
-	
+
 	return new LoginView();
 });

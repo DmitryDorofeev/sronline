@@ -31,6 +31,12 @@ a {
   width: 70%;
   margin: 0 15%; }
 
+.page__title {
+  color: #fff;
+  text-align: center;
+  font-size: 22px;
+  margin-top: 20px; }
+
 .header__button {
   float: right;
   padding: 10px;

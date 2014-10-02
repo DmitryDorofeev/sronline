@@ -10,7 +10,13 @@ module.exports = function (grunt) {
                 }
             },
             sass: {
-                files: ['public_html/css/main.sass'],
+                files: [
+                  'public_html/css/sass/main.sass',
+                  'public_html/css/sass/variables.sass',
+                  'public_html/css/sass/app.sass',
+                  'public_html/css/sass/game.sass',
+                  'public_html/css/sass/fonts.sass'
+                ],
                 tasks: ['sass'],
                 options: {
                     atBegin: true
@@ -67,7 +73,7 @@ module.exports = function (grunt) {
         sass: {
             dist: {
                 files: {
-                    'public_html/css/main.css': 'public_html/css/main.sass'
+                    'public_html/css/main.css': 'public_html/css/sass/main.sass'
                 }
             }
         },

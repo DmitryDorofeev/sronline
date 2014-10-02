@@ -9,9 +9,7 @@ define([
 		events: {
 			'submit form': 'signup'
 		},
-		template: function() {
-			return tmpl();
-		},
+		template: tmpl,
 		render: function() {
 			this.$el.html(this.template());
 			this.$page.html(this.$el);
@@ -23,7 +21,6 @@ define([
 			      data = form.serialize(),
 			      url = form.attr('action'),
 			      that = this;
-
 			$.ajax({
 				url: url,
 				type: 'POST',
@@ -46,6 +43,6 @@ define([
 			this.$error.text(msg);
 		}
 	});
-	
+
 	return new SignupView();
 });
