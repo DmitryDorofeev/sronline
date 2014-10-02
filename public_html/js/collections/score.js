@@ -5,7 +5,8 @@ define([
 ], function($, Backbone, ScoreModel){
 
   var ScoreCollection = Backbone.Collection.extend({
-    model: ScoreModel
+    model: ScoreModel,
+    url: '/api/v1/score'
   });
 
   return new ScoreCollection();

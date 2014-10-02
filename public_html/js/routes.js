@@ -5,8 +5,9 @@ define([
 	'views/game',
 	'views/login',
 	'views/signup',
-	'views/profile'
-], function($, Backbone, homeView, gameView, loginView, signupView, profileView) {
+	'views/profile',
+	'views/scoreboard'
+], function($, Backbone, homeView, gameView, loginView, signupView, profileView, scoreboardView) {
 
 	var $page = $('#page');
 
@@ -35,7 +36,7 @@ define([
 			profileView.render();
 		},
 		scoreboard: function() {
-			
+			scoreboardView.render();
 		}
 	});
 
