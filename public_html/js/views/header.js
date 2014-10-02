@@ -26,7 +26,7 @@ define([
 				type: 'POST',
 				url: '/api/v1/auth/logout'
 			}).done(function() {
-				window.location.href = '/';
+				window.location.href = '#';
 			});
 		}
 	});
