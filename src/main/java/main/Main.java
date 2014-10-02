@@ -4,6 +4,7 @@ import Users.AccountService;
 import admin.AdminPageServlet;
 import frontend.LoginServlet;
 import frontend.LogoutServlet;
+import frontend.ScoreServlet;
 import frontend.SignUpServlet;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
@@ -50,6 +51,8 @@ public class Main {
         context.addServlet(new ServletHolder(logout), "/api/v1/auth/logout");
         Servlet admin = new AdminPageServlet();
         context.addServlet(new ServletHolder(admin), "/admin");
+        Servlet score = new ScoreServlet();
+        context.addServlet(new ServletHolder(score), "/api/v1/score");
 
 
         ResourceHandler resource_handler = new ResourceHandler();
