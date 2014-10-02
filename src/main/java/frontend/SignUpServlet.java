@@ -1,18 +1,19 @@
 package frontend;
 
 import Users.AccountService;
-import constants.CodeResponses;
 import Users.UserProfile;
+import constants.CodeResponses;
+import dao.PlayerDao;
+import main.Factory;
 import org.json.simple.JSONObject;
-import templater.PageGenerator;
+import table.Player;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.sql.SQLException;
 
 /**
  * Created by dmitry on 13.09.14.
@@ -34,6 +35,18 @@ public class SignUpServlet extends HttpServlet {
         String login = request.getParameter("login");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+
+        Factory factory = Factory.getInstance();
+        PlayerDao playerDao = factory.getPlayerDao();
+        Player player = new Player();
+        player.setLogin(login);
+        player.setPass(password);
+        player.setMail(email);
+        try {
+            playerDao.addPlayer(player);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         response.setStatus(HttpServletResponse.SC_OK);
 

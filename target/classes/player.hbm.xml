@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="main.java.table.Player" table="players">
+    <class name="table.Player" table="players">
         <id name="id" column="id" type="java.lang.Integer">
             <generator class="increment" />
         </id>
         <property name="login" column="login" type="java.lang.String"/>
         <property name="pass" column="pass" type="java.lang.String"/>
+        <property name="mail" column="mail" type="java.lang.String"/>
     </class>
 </hibernate-mapping>

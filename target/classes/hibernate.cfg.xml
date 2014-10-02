@@ -3,7 +3,7 @@
 <hibernate-configuration>
     <session-factory>
         
-        <property name="hibernate.dialect">org.hibernate.dialect.mySQLDialect</property>
+        <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://sronline.ru:3306/sronline</property>
         <property name="hibernate.connection.username">sronline</property>

@@ -22,6 +22,9 @@ public class Player {
     @Column(name="pass")
     private String pass;
 
+    @Column(name="mail")
+    private String mail;
+
     public void setId(int id) {
         this.id = id;
     }
@@ -30,6 +33,9 @@ public class Player {
     }
     public void setPass(String pass) {
         this.pass = pass;
+    }
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public int getId() {
@@ -40,5 +46,8 @@ public class Player {
     }
     public String getPass() {
         return pass;
+    }
+    public String getMail() {
+        return mail;
     }
 }

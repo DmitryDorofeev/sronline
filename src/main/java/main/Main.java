@@ -32,6 +32,12 @@ public class Main {
 //        Factory factory = Factory.getInstance();
 //        PlayerDao playerDao = factory.getPlayerDao();
 //
+//        Player player = new Player();
+//        player.setLogin("azaza");
+//        player.setPass("pass");
+//        player.setMail("admin@test.ru");
+//        playerDao.addPlayer(player);
+
 //        List<Player> players = playerDao.getPlayers();
 //
 //        System.out.println("id  login   pass");
