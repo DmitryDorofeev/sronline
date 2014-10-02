@@ -22,7 +22,12 @@ define([
 		},
 		logout: function() {
 			userModel.clear();
-			window.location.href = '/';
+			$.ajax({
+				type: 'POST',
+				url: '/api/v1/auth/logout'
+			}).done(function() {
+				window.location.href = '/';
+			});
 		}
 	});
 

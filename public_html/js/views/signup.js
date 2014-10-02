@@ -1,7 +1,8 @@
 define([
+	'jquery',
 	'backbone',
 	'tmpl/signup'
-], function (Backbone, tmpl) {
+], function ($, Backbone, tmpl) {
 	var SignupView = Backbone.View.extend({
 		initialize: function() {
 			this.$page = $('#page');

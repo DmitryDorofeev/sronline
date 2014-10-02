@@ -3,6 +3,7 @@
 		<fest:when test="user.login !== undefined">
 			<button class="header__button header__button_red js-logout">Выход</button>
 			<a href="#profile" class="header__button header__button_red">Профиль</a>
+			<a href="#scoreboard" class="header__button header__button_red">Рейтинг</a>
 			<div class="header__text header__text_login"><fest:value>user.login</fest:value></div>
 		</fest:when>
 		<fest:otherwise>
