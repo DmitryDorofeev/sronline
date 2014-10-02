@@ -19,7 +19,7 @@ define([
 		},
 		play: function() {
 			if (userModel.get('login') !== undefined) {
-				
+				window.location.href = '#game';
 			}
 			else {
 				window.location.href = '#login';

@@ -4,6 +4,6 @@
     <fest:each iterate="scores" index="i" value="score">
       <div><fest:value>score.login</fest:value></div>
       <div><fest:value>score.value</fest:value></div>
-    <fest:each>
+    </fest:each>
   </div>
 </fest:template>

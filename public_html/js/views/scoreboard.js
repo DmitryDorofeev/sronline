@@ -11,11 +11,12 @@ define([
     },
     template: tmpl,
     render: function() {
+      var that = this;
       this.collection.fetch({
         success: function() {
-          var scores = this.collection.toJSON();
-          this.$el.html(this.template(scores));
-          this.$page.html(this.$el);
+          var scores = that.collection.toJSON();
+          that.$el.html(that.template(scores));
+          that.$page.html(that.$el);
         }
       });
     }
