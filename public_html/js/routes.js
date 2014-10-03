@@ -16,7 +16,8 @@ define([
 			'game': 'game',
 			'login': 'login',
 			'signup': 'signup',
-			'profile': 'profile'
+			'profile': 'profile',
+			'scoreboard': 'scoreboard'
 		},
 		index: function() {
 			homeView.render();
@@ -32,6 +33,9 @@ define([
 		},
 		profile: function() {
 			profileView.render();
+		},
+		scoreboard: function() {
+			
 		}
 	});
 
