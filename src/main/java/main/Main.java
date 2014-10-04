@@ -28,25 +28,6 @@ public class Main {
         Server server = new Server(port);
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
 
-        ////////////// Это шняга не работает почему-то, не находит конфиг файл :(((
-//        Factory factory = Factory.getInstance();
-//        PlayerDao playerDao = factory.getPlayerDao();
-//
-//        Player player = new Player();
-//        player.setLogin("azaza");
-//        player.setPass("pass");
-//        player.setMail("admin@test.ru");
-//        playerDao.addPlayer(player);
-
-//        List<Player> players = playerDao.getPlayers();
-//
-//        System.out.println("id  login   pass");
-//
-//        for(Player player : players) {
-//            System.out.println(player.getId() + " " + player.getLogin() + " " + player.getPass());
-//        }
-
-        ////////
         AccountService accountService = new AccountService();
 
         Servlet login = new LoginServlet(accountService);
