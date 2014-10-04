@@ -60,12 +60,12 @@ public class PlayerDaoImpl implements PlayerDao {
 
     @Override
     public List<Player> getPlayers() throws SQLException {
-        List<Player> players = null;
+        //List<Player> players = null;
 
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            players = session.createCriteria(Player.class).list();
+            return (List<Player>) session.createCriteria(Player.class).list();
         }catch(Exception e) {
             e.printStackTrace();
         }finally {

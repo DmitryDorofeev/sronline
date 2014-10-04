@@ -2,6 +2,7 @@ package main;
 
 import Users.AccountService;
 import admin.AdminPageServlet;
+import dao.PlayerDao;
 import frontend.LoginServlet;
 import frontend.LogoutServlet;
 import frontend.ScoreServlet;
@@ -12,8 +13,10 @@ import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import table.Player;
 
 import javax.servlet.Servlet;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -29,6 +32,16 @@ public class Main {
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
 
         AccountService accountService = new AccountService();
+        Factory factory = Factory.getInstance();
+        PlayerDao playerDao = factory.getPlayerDao();
+        List<Player> players = playerDao.getPlayers();
+
+        System.out.println("id login pass");
+
+        for(Player player : players) {
+            System.out.println(player.getId() + " " + player.getLogin() + " " + player.getPass());
+        }
+
 
         Servlet login = new LoginServlet(accountService);
         context.addServlet(new ServletHolder(login), "/api/v1/auth/signin");
