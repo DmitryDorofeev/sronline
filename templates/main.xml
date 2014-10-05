@@ -1,6 +1,6 @@
 <fest:template xmlns:fest="http://fest.mail.ru">
     <div class="wrap">
     	<div class="title">SPACE RANGERS</div>
-    	<button class="button_play">Играть</button>
+    	<a href="#game" class="button_play">Играть</a>
     </div>
 </fest:template>

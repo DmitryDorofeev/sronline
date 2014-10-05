@@ -1,36 +1,34 @@
 define([
-	'jquery',
-	'backbone',
-	'tmpl/header',
-	'models/user'
-], function($, Backbone, tmpl, userModel) {
+  'jquery',
+  'backbone',
+  'tmpl/header',
+  'models/user'
+], function ($, Backbone, tmpl, userModel) {
 
-	var HeaderView = Backbone.View.extend({
-		className: 'header',
-		template: function() {
-			return tmpl(this.model.toJSON());
-		},
-		initialize: function() {
-			this.listenTo(this.model, 'change', this.render);
-		},
-		events: {
-			'click .js-logout': 'logout'
-		},
-		render: function() {
-			this.$el.html(this.template());
-			$('body').prepend(this.$el);
-		},
-		logout: function() {
-			userModel.clear();
-			$.ajax({
-				type: 'POST',
-				url: '/api/v1/auth/logout'
-			}).done(function() {
-				window.location.href = '#';
-			});
-		}
-	});
+  var HeaderView = Backbone.View.extend({
+    model: userModel,
+    className: 'header',
+    template: function () {
+      return tmpl(this.model.toJSON());
+    },
+    initialize: function () {
+      this.listenTo(this.model, 'change', this.render);
+      this.render();
+    },
+    events: {
+      'click .js-logout': 'logout'
+    },
+    render: function () {
+      this.$el.html(this.template());
+    },
+    logout: function () {
+      userModel.logout();
+    },
+    show: function () {
 
-	return new HeaderView({model: userModel});
+    }
+  });
+
+  return new HeaderView();
 
 });

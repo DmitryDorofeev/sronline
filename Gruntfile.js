@@ -43,15 +43,15 @@ module.exports = function (grunt) {
                 }
             }
         },
-        connect: {
-            server: {
-                options: {
-                    livereload: true,
-                    port: 8080,
-                    base: 'public_html'
-                }
-            }
-        },
+        // connect: {
+        //     server: {
+        //         options: {
+        //             livereload: true,
+        //             port: 8080,
+        //             base: 'public_html'
+        //         }
+        //     }
+        // },
         fest: {
             templates: {
                 files: [{
@@ -95,11 +95,11 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-connect');
+    // grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-fest');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
 
-    grunt.registerTask('default', ['connect', 'watch']);
+    grunt.registerTask('default', ['watch']);
 
 };

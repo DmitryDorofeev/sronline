@@ -6,8 +6,10 @@ define([
 ], function($, Backbone, scoreCollection, tmpl) {
 
   var ScoreboardView = Backbone.View.extend({
+    tagName: 'div',
+    collection: scoreCollection,
     initialize: function() {
-      this.$page = $('#page');
+      this.render();
     },
     template: tmpl,
     render: function() {
@@ -16,11 +18,10 @@ define([
         success: function() {
           var scores = that.collection.toJSON();
           that.$el.html(that.template(scores));
-          that.$page.html(that.$el);
         }
       });
     }
   });
 
-  return new ScoreboardView({collection: scoreCollection});
+  return new ScoreboardView();
 });

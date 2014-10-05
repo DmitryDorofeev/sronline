@@ -1,44 +1,46 @@
 define([
-	'jquery',
-	'backbone',
-	'views/home',
-	'views/game',
-	'views/login',
-	'views/signup',
-	'views/profile',
-	'views/scoreboard'
+  'jquery',
+  'backbone',
+  'views/home',
+  'views/game',
+  'views/login',
+  'views/signup',
+  'views/profile',
+  'views/scoreboard'
 ], function($, Backbone, homeView, gameView, loginView, signupView, profileView, scoreboardView) {
 
-	var $page = $('#page');
+  var Router = Backbone.Router.extend({
+    routes: {
+      '': 'index',
+      'game': 'game',
+      'login': 'login',
+      'signup': 'signup',
+      'profile': 'profile',
+      'scoreboard': 'scoreboard',
+      '*other': 'default'
+    },
+    index: function() {
+      homeView.show();
+    },
+    game: function() {
+      gameView.show();
+    },
+    login: function() {
+      loginView.show();
+    },
+    signup: function() {
+      signupView.show();
+    },
+    profile: function() {
+      profileView.show();
+    },
+    scoreboard: function() {
+      scoreboardView.show();
+    },
+    default: function () {
+      alert('oppa');
+    }
+  });
 
-	var Router = Backbone.Router.extend({
-		routes: {
-			'': 'index',
-			'game': 'game',
-			'login': 'login',
-			'signup': 'signup',
-			'profile': 'profile',
-			'scoreboard': 'scoreboard'
-		},
-		index: function() {
-			homeView.render();
-		},
-		game: function() {
-			gameView.render();
-		},
-		login: function() {
-			loginView.render();
-		},
-		signup: function() {
-			signupView.render();
-		},
-		profile: function() {
-			profileView.render();
-		},
-		scoreboard: function() {
-			scoreboardView.render();
-		}
-	});
-
-	return new Router();
+  return new Router();
 });

@@ -2,10 +2,7 @@ require([
   'jquery',
   'backbone',
   'routes',
-  'views/header'
-], function($, Backbone, router, headerView) {
-
+  'views/app'
+], function($, Backbone, router, appView) {
     Backbone.history.start();
-    headerView.render();
-
 });

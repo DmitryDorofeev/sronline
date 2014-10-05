@@ -41,7 +41,9 @@ public class LoginServlet extends HttpServlet {
             response.getWriter().println(output);
         }
         else {
-            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            response.setStatus(HttpServletResponse.SC_OK);
+            JSONObject output = new JSONObject();
+            response.getWriter().println(output);
         }
     }
 

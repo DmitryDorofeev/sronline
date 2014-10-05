@@ -32,15 +32,15 @@ public class Main {
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
 
         AccountService accountService = new AccountService();
-        Factory factory = Factory.getInstance();
-        PlayerDao playerDao = factory.getPlayerDao();
-        List<Player> players = playerDao.getPlayers();
-
-        System.out.println("id login pass");
-
-        for(Player player : players) {
-            System.out.println(player.getId() + " " + player.getLogin() + " " + player.getPass());
-        }
+//        Factory factory = Factory.getInstance();
+//        PlayerDao playerDao = factory.getPlayerDao();
+//        List<Player> players = playerDao.getPlayers();
+//
+//        System.out.println("id login pass");
+//
+//        for(Player player : players) {
+//            System.out.println(player.getId() + " " + player.getLogin() + " " + player.getPass());
+//        }
 
 
         Servlet login = new LoginServlet(accountService);
