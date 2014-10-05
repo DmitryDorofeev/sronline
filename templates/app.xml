@@ -1,3 +1,4 @@
 <fest:template xmlns:fest="http://fest.mail.ru">
-
+  <div id="header"></div>
+  <div id="page"></div>
 </fest:template>

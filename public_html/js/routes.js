@@ -6,8 +6,9 @@ define([
   'views/login',
   'views/signup',
   'views/profile',
-  'views/scoreboard'
-], function($, Backbone, homeView, gameView, loginView, signupView, profileView, scoreboardView) {
+  'views/scoreboard',
+  'views/app'
+], function($, Backbone, homeView, gameView, loginView, signupView, profileView, scoreboardView, manager) {
 
   var Router = Backbone.Router.extend({
     routes: {
@@ -20,25 +21,31 @@ define([
       '*other': 'default'
     },
     index: function() {
+      manager.subscribe(homeView);
       homeView.show();
     },
     game: function() {
+      manager.subscribe(gameView);
       gameView.show();
     },
     login: function() {
+      manager.subscribe(loginView);
       loginView.show();
     },
     signup: function() {
+      manager.subscribe(signupView);
       signupView.show();
     },
     profile: function() {
+      manager.subscribe(profileView);
       profileView.show();
     },
     scoreboard: function() {
+      manager.subscribe(scoreboardView);
       scoreboardView.show();
     },
     default: function () {
-      alert('oppa');
+      alert('404');
     }
   });
 

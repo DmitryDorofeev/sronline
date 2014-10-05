@@ -5,8 +5,10 @@ define([
   'models/user'
 ], function ($, Backbone, tmpl, userModel) {
   var LoginView = Backbone.View.extend({
+    model: userModel,
     initialize: function() {
-      this.$page = $('#page');
+      this.listenTo(this.model, 'error', this.renderServerError);
+      this.listenTo(this.model, 'notlogined', this.renderLoginError);
     },
     events: {
       'submit form': 'login'
@@ -14,8 +16,8 @@ define([
     template: tmpl,
     render: function() {
       this.$el.html(this.template());
-      this.$page.html(this.$el);
-      this.$error = $('#error');
+      this.$error = this.$el.find('#error');
+      return this;
     },
     login: function(e) {
       e.preventDefault();
@@ -25,8 +27,14 @@ define([
         password: form.find('input[name=password]')
       });
     },
-    renderError: function(msg) {
-      this.$error.text(msg);
+    renderServerError: function() {
+      this.$error.text('Ошибка соединения с сервером');
+    },
+    renderLoginError: function() {
+      this.$error.text('Неверный логин и/или пароль');
+    },
+    show: function () {
+      this.trigger('show');
     }
   });
 

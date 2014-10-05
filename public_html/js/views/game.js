@@ -4,7 +4,7 @@ define([
   'models/user'
 ], function (Backbone, tmpl, userModel) {
   var GameView = Backbone.View.extend({
-    className: 'game-page',
+    className: 'game',
     events: {
       'click': 'moveShip'
     },
@@ -16,9 +16,10 @@ define([
     },
     render: function() {
       this.$el.html(this.template());
+      return this;
     },
     show: function () {
-      this.$el.appendTo('.app');
+      this.trigger('show');
     },
     moveShip: function(e) {
       // TODO: Логика кораблика

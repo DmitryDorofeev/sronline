@@ -12,20 +12,18 @@ define([
       return tmpl(this.model.toJSON());
     },
     initialize: function () {
+      this.$container = $('#header');
       this.listenTo(this.model, 'change', this.render);
-      this.render();
     },
     events: {
       'click .js-logout': 'logout'
     },
     render: function () {
       this.$el.html(this.template());
+      return this;
     },
     logout: function () {
       userModel.logout();
-    },
-    show: function () {
-
     }
   });
 

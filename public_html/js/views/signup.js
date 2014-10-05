@@ -1,47 +1,36 @@
 define([
   'jquery',
   'backbone',
-  'tmpl/signup'
-], function ($, Backbone, tmpl) {
+  'tmpl/signup',
+  'models/user'
+], function ($, Backbone, tmpl, userModel) {
   var SignupView = Backbone.View.extend({
+    model: userModel,
     initialize: function() {
-      this.$page = $('#page');
     },
     events: {
-      'submit form': 'signup'
+      'submit .signup-form': 'signup'
     },
     template: tmpl,
     render: function() {
       this.$el.html(this.template());
-      this.$page.html(this.$el);
-      this.$error = $('#error');
+      this.$error = this.$el.find('#error');
+      return this;
     },
-    signup: function(e) {
+    signup: function (e) {
       e.preventDefault();
-      var form = this.$el.find('form'),
-            data = form.serialize(),
-            url = form.attr('action'),
-            that = this;
-      $.ajax({
-        url: url,
-        type: 'POST',
-        data: data,
-        dataType: 'json',
-        success: function(data) {
-          if (data.status == 200) {
-            window.location.href = '#login';
-          }
-          else if (data.status == 404) {
-            that.renderError('Такой пользователь уже существует');
-          }
-        },
-        error: function() {
-          that.renderError('Неизвестная ошибка. Попробуйте позже.');
-        }
+      var form = $('.signup-form');
+      this.model.set({
+        login: form.find('input[name=login]').val(),
+        email: form.find('input[name=email]').val(),
+        password: form.find('input[name=password]').val(),
       });
     },
     renderError: function(msg) {
       this.$error.text(msg);
+    },
+    show: function () {
+      this.trigger('show');
     }
   });
 

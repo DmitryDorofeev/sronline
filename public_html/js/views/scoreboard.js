@@ -8,18 +8,21 @@ define([
   var ScoreboardView = Backbone.View.extend({
     tagName: 'div',
     collection: scoreCollection,
-    initialize: function() {
-      this.render();
+    initialize: function () {
+      this.listenTo(this.collection, 'reset', this.insertInfo)
     },
-    template: tmpl,
+    template: function () {
+      return tmpl(this.collection.toJSON());
+    },
     render: function() {
-      var that = this;
-      this.collection.fetch({
-        success: function() {
-          var scores = that.collection.toJSON();
-          that.$el.html(that.template(scores));
-        }
-      });
+      this.collection.fetch({reset: true});
+      return this;
+    },
+    show: function () {
+      this.trigger('show');
+    },
+    insertInfo: function () {
+      this.$el.html(this.template());
     }
   });
 
