@@ -9,7 +9,6 @@ define([
       'click': 'moveShip'
     },
     initialize: function() {
-      this.render();
     },
     template: function() {
       return tmpl();

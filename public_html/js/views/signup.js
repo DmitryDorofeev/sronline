@@ -7,9 +7,10 @@ define([
   var SignupView = Backbone.View.extend({
     model: userModel,
     initialize: function() {
+      this.listenTo(this.model, 'notregistred', this.renderRegError);
     },
     events: {
-      'submit .signup-form': 'signup'
+      'submit #signup-form': 'signup'
     },
     template: tmpl,
     render: function() {
@@ -19,8 +20,8 @@ define([
     },
     signup: function (e) {
       e.preventDefault();
-      var form = $('.signup-form');
-      this.model.set({
+      var form = $('#signup-form');
+      this.model.signup({
         login: form.find('input[name=login]').val(),
         email: form.find('input[name=email]').val(),
         password: form.find('input[name=password]').val(),
@@ -31,6 +32,9 @@ define([
     },
     show: function () {
       this.trigger('show');
+    },
+    renderRegError: function () {
+      this.$error.text('Пользователь с таким именем уже существует');
     }
   });
 

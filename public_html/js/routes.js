@@ -7,10 +7,16 @@ define([
   'views/signup',
   'views/profile',
   'views/scoreboard',
-  'views/app'
-], function($, Backbone, homeView, gameView, loginView, signupView, profileView, scoreboardView, manager) {
+  'views/app',
+  'models/user'
+], function($, Backbone, homeView, gameView, loginView, signupView, profileView, scoreboardView, manager, userModel) {
 
   var Router = Backbone.Router.extend({
+    initialize: function () {
+        this.listenTo(userModel, 'logined', this.toGame);
+        this.listenTo(userModel, 'registred', this.toLogin);
+        this.listenTo(userModel, 'logout', this.toMain);
+    },
     routes: {
       '': 'index',
       'game': 'game',
@@ -46,6 +52,15 @@ define([
     },
     default: function () {
       alert('404');
+    },
+    toGame: function () {
+      this.navigate('game', {trigger: true});
+    },
+    toLogin: function () {
+      this.navigate('login', {trigger: true});
+    },
+    toMain: function () {
+      this.navigate('', {trigger: true});
     }
   });
 

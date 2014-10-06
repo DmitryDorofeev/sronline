@@ -11,31 +11,32 @@ define([
       return (this.login !== undefined);
     },
     logout: function() {
+      var that = this;
       $.ajax({
         type: 'POST',
         url: '/api/v1/auth/logout'
       }).done(function() {
-        this.clear();
-        this.trigger('logout');
+        that.clear();
+        that.trigger('logout');
       });
     },
-    login: function () { // TODO доделать
+    login: function (data) { // TODO доделать
       var that = this;
       $.ajax({
-        url: url,
+        url: this.url,
         type: 'POST',
-        data: this.toJSON(),
+        data: data,
         dataType: 'json',
-        success: function(data) {
-          if (data.status === 200) {
-            this.set({
-              'login': data.login,
-              'email': data.email,
-              'avatar': data.avatar
+        success: function(resp) {
+          if (resp.status === 200) {
+            that.set({
+              'login': resp.login,
+              'email': resp.email,
+              'avatar': resp.avatar
             });
             that.trigger('logined');
           }
-          else if (data.status === 403) {
+          else if (resp.status === 403) {
             that.trigger('notlogined')
           }
         },
@@ -44,18 +45,19 @@ define([
         }
       });
     },
-    signup: function() { // TODO допилить
+    signup: function(data) { // TODO допилить
       var that = this;
       $.ajax({
-        url: url,
+        url: '/api/v1/auth/signup',
         type: 'POST',
         data: data,
         dataType: 'json',
-        success: function(data) {
-          if (data.status == 200) {
+        success: function(resp) {
+          if (resp.status == 200) {
+            that.set(resp);
             that.trigger('registred');
           }
-          else if (data.status == 404) {
+          else if (resp.status == 404) {
             that.trigger('notregistred');
           }
         },

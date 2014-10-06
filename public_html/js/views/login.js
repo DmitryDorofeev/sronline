@@ -11,7 +11,7 @@ define([
       this.listenTo(this.model, 'notlogined', this.renderLoginError);
     },
     events: {
-      'submit form': 'login'
+      'submit #login-form': 'login'
     },
     template: tmpl,
     render: function() {
@@ -21,10 +21,10 @@ define([
     },
     login: function(e) {
       e.preventDefault();
-      var form = this.$el.find('form');
+      var form = this.$el.find('#login-form');
       this.model.login({
-        login: form.find('input[name=login]'),
-        password: form.find('input[name=password]')
+        login: form.find('input[name=login]').val(),
+        password: form.find('input[name=password]').val()
       });
     },
     renderServerError: function() {

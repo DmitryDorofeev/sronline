@@ -2,12 +2,14 @@ define([
   'jquery',
   'backbone',
   'tmpl/app',
-  'views/header'
-], function ($, Backbone, tmpl, headerView) {
+  'views/header',
+  'models/user'
+], function ($, Backbone, tmpl, headerView, userModel) {
 
   var AppView = Backbone.View.extend({
       tagName: 'div',
       className: 'app',
+      model: userModel,
       initialize: function() {
         this.$container = $('body');
         this.render();
