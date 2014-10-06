@@ -8,7 +8,7 @@ define([
       this.fetch();
     },
     isLogined: function() {
-      return (this.login !== undefined);
+      return (this.get('login') !== undefined);
     },
     logout: function() {
       var that = this;
@@ -37,7 +37,7 @@ define([
             that.trigger('logined');
           }
           else if (resp.status === 403) {
-            that.trigger('notlogined')
+            that.trigger('badlogin')
           }
         },
         error: function() {

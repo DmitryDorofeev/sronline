@@ -8,7 +8,7 @@ define([
     model: userModel,
     initialize: function() {
       this.listenTo(this.model, 'error', this.renderServerError);
-      this.listenTo(this.model, 'notlogined', this.renderLoginError);
+      this.listenTo(this.model, 'badlogin', this.renderLoginError);
     },
     events: {
       'submit #login-form': 'login'
@@ -34,7 +34,7 @@ define([
       this.$error.text('Неверный логин и/или пароль');
     },
     show: function () {
-      this.trigger('show');
+      this.trigger('show', this);
     }
   });
 

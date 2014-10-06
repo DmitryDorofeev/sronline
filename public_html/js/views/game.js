@@ -18,7 +18,12 @@ define([
       return this;
     },
     show: function () {
-      this.trigger('show');
+      if (userModel.isLogined()) {
+        this.trigger('show', this);
+      }
+      else {
+        userModel.trigger('notlogined');
+      }
     },
     moveShip: function(e) {
       // TODO: Логика кораблика

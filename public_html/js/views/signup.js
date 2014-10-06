@@ -31,7 +31,7 @@ define([
       this.$error.text(msg);
     },
     show: function () {
-      this.trigger('show');
+      this.trigger('show', this);
     },
     renderRegError: function () {
       this.$error.text('Пользователь с таким именем уже существует');

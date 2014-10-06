@@ -19,7 +19,7 @@ define([
       return this;
     },
     show: function () {
-      this.trigger('show');
+      this.trigger('show', this);
     },
     insertInfo: function () {
       this.$el.html(this.template());

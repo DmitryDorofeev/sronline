@@ -22,13 +22,12 @@ define([
       },
       subscribe: function (view) {
         this.listenTo(view, 'show', this.add);
-        this.currentView = view;
       },
       unsubscribe: function (view) {
         this.stopListening(view);
       },
-      add: function () {
-        this.$el.find('#page').html(this.currentView.render().$el);
+      add: function (view) {
+        this.$el.find('#page').html(view.render().$el);
       }
   });
 

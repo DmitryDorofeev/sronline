@@ -15,6 +15,7 @@ define([
     initialize: function () {
         this.listenTo(userModel, 'logined', this.toGame);
         this.listenTo(userModel, 'registred', this.toLogin);
+        this.listenTo(userModel, 'notlogined', this.toLogin);
         this.listenTo(userModel, 'logout', this.toMain);
     },
     routes: {
