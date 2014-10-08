@@ -41,6 +41,22 @@ public class AccountService {
         return this.sessions.get(sessionId);
     }
 
+    public void updateUser(UserProfile userNewInfo, String sessionID) {
+
+        this.users.remove(userNewInfo.getLogin());
+        this.users.put(userNewInfo.getLogin(), userNewInfo);
+
+        this.sessions.remove(sessionID);
+        this.sessions.put(sessionID, userNewInfo);
+    }
+
+    public void removeUser(String login, String sessionID) {
+
+        this.users.remove(login);
+
+        this.sessions.remove(sessionID);
+    }
+
     public CodeResponses logout(String sessionId) {
         sessions.remove(sessionId);
 
