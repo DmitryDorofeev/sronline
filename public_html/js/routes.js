@@ -10,12 +10,14 @@ define([
   'views/app',
   'models/user'
 ], function($, Backbone, homeView, gameView, loginView, signupView, profileView, scoreboardView, manager, userModel) {
-
+  
+  manager.subscribe([homeView, gameView, loginView, signupView, profileView, scoreboardView]);
+  
   var Router = Backbone.Router.extend({
     initialize: function () {
-        this.listenTo(userModel, 'logined', this.toGame);
-        this.listenTo(userModel, 'registred', this.toLogin);
-        this.listenTo(userModel, 'notlogined', this.toLogin);
+        this.listenTo(userModel, 'login:ok', this.toGame);
+        this.listenTo(userModel, 'signup:ok', this.toLogin);
+        this.listenTo(userModel, 'login:bad', this.toLogin);
         this.listenTo(userModel, 'logout', this.toMain);
     },
     routes: {
@@ -28,27 +30,21 @@ define([
       '*other': 'default'
     },
     index: function() {
-      manager.subscribe(homeView);
       homeView.show();
     },
     game: function() {
-      manager.subscribe(gameView);
       gameView.show();
     },
     login: function() {
-      manager.subscribe(loginView);
       loginView.show();
     },
     signup: function() {
-      manager.subscribe(signupView);
       signupView.show();
     },
     profile: function() {
-      manager.subscribe(profileView);
       profileView.show();
     },
     scoreboard: function() {
-      manager.subscribe(scoreboardView);
       scoreboardView.show();
     },
     default: function () {

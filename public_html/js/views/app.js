@@ -2,9 +2,10 @@ define([
   'jquery',
   'backbone',
   'tmpl/app',
-  'views/header',
+  'views/toolbar',
+  'views/panel',
   'models/user'
-], function ($, Backbone, tmpl, headerView, userModel) {
+], function ($, Backbone, tmpl, toolbarView, panelView, userModel) {
 
   var AppView = Backbone.View.extend({
       tagName: 'div',
@@ -18,16 +19,19 @@ define([
       render: function () {
         this.$el.html(this.template());
         this.$container.html(this.$el);
-        this.$el.find('#header').html(headerView.render().$el);
+        this.$container.append(toolbarView.render().$el);
+        this.$container.append(panelView.render().$el);
       },
-      subscribe: function (view) {
-        this.listenTo(view, 'show', this.add);
+      subscribe: function (views) {
+        for (i in views) {
+          this.listenTo(views[i], 'show', this.add);
+        }
       },
       unsubscribe: function (view) {
         this.stopListening(view);
       },
       add: function (view) {
-        this.$el.find('#page').html(view.render().$el);
+        this.$el.find('#page').html(view.$el);
       }
   });
 

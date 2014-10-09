@@ -4,16 +4,17 @@ define([
   'models/user'
 ], function (Backbone, tmpl, userModel) {
   var ProfileView = Backbone.View.extend({
-
     initialize: function() {
-      this.$page = $('#page');
+      this.render();
     },
     template: tmpl,
     render: function() {
       var profile = userModel.toJSON();
-      console.log(profile);
       this.$el.html(this.template(profile));
-      this.$page.html(this.$el);
+      return this;
+    },
+    show: function () {
+      this.trigger('show', this);
     }
   });
 

@@ -34,14 +34,14 @@ define([
               'email': resp.email,
               'avatar': resp.avatar
             });
-            that.trigger('logined');
+            that.trigger('login:ok');
           }
           else if (resp.status === 403) {
-            that.trigger('badlogin')
+            that.trigger('login:bad')
           }
         },
         error: function() {
-          that.trigger('error');
+          that.trigger('login:error');
         }
       });
     },
@@ -55,14 +55,14 @@ define([
         success: function(resp) {
           if (resp.status == 200) {
             that.set(resp);
-            that.trigger('registred');
+            that.trigger('signup:ok');
           }
           else if (resp.status == 404) {
-            that.trigger('notregistred');
+            that.trigger('signup:bad');
           }
         },
         error: function() {
-          that.trigger('error');
+          that.trigger('signup:error');
         }
       });
     }

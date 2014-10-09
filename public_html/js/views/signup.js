@@ -7,7 +7,9 @@ define([
   var SignupView = Backbone.View.extend({
     model: userModel,
     initialize: function() {
-      this.listenTo(this.model, 'notregistred', this.renderRegError);
+      this.listenTo(this.model, 'signup:bad', this.renderRegError);
+      this.listenTo(this.model, 'signup:error', this.renderServerError);
+      this.render();
     },
     events: {
       'submit #signup-form': 'signup'
@@ -35,6 +37,9 @@ define([
     },
     renderRegError: function () {
       this.$error.text('Пользователь с таким именем уже существует');
+    },
+    renderServerError: function () {
+      this.$error.text('Ошибка соединения с сервером');
     }
   });
 

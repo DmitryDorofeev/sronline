@@ -7,12 +7,12 @@ define([
 
   var HeaderView = Backbone.View.extend({
     model: userModel,
-    className: 'header',
+    className: 'toolbar',
     template: function () {
       return tmpl(this.model.toJSON());
     },
     initialize: function () {
-      this.$container = $('#header');
+      this.$container = $('#toolbar');
       this.listenTo(this.model, 'change', this.render);
     },
     events: {

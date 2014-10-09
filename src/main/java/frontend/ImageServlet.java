@@ -47,16 +47,16 @@ public class ImageServlet {
 
         // Check if file is actually an image (avoid download of other files by hackers!).
         // For all content types, see: http://www.w3schools.com/media/media_mimeref.asp
-        if (contentType == null || !contentType.startsWith("image")) {
+//        if (contentType == null || !contentType.startsWith("image")) {
             // Do your thing if the file appears not being a real image.
             // Throw an exception, or send 404, or show default/warning image, or just ignore it.
             //response.sendError(HttpServletResponse.SC_NOT_FOUND); // 404.
-            return;
-        }
+//            return;
+//        }
 
         // Init servlet response.
         response.reset();
-        response.setContentType(contentType);
+//        response.setContentType(contentType);
         response.setHeader("Content-Length", String.valueOf(image.length()));
 
         // Write image content to response.

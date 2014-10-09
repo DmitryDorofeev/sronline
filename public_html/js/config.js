@@ -2,7 +2,8 @@ require.config({
     paths: {
         'jquery': 'lib/jquery',
         'underscore': 'lib/underscore',
-        'backbone': 'lib/backbone'
+        'backbone': 'lib/backbone',
+        'phaser': 'lib/phaser.min'
     },
     shim: {
         'backbone': {
@@ -11,6 +12,9 @@ require.config({
         },
         'underscore': {
             exports: '_'
+        },
+        'phaser': {
+            exports: 'Phaser'
         }
     }
 });

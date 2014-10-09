@@ -7,8 +7,9 @@ define([
   var LoginView = Backbone.View.extend({
     model: userModel,
     initialize: function() {
-      this.listenTo(this.model, 'error', this.renderServerError);
-      this.listenTo(this.model, 'badlogin', this.renderLoginError);
+      this.listenTo(this.model, 'login:error', this.renderServerError);
+      this.listenTo(this.model, 'login:bad', this.renderLoginError);
+      this.render();
     },
     events: {
       'submit #login-form': 'login'

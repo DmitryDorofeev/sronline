@@ -36,17 +36,17 @@ public class SignUpServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        Factory factory = Factory.getInstance();
-        PlayerDao playerDao = factory.getPlayerDao();
-        Player player = new Player();
-        player.setLogin(login);
-        player.setPass(password);
-        player.setMail(email);
-        try {
-            playerDao.addPlayer(player);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        Factory factory = Factory.getInstance();
+//        PlayerDao playerDao = factory.getPlayerDao();
+//        Player player = new Player();
+//        player.setLogin(login);
+//        player.setPass(password);
+//        player.setMail(email);
+//        try {
+//            playerDao.addPlayer(player);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
 
         response.setStatus(HttpServletResponse.SC_OK);
 
