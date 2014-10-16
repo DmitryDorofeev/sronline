@@ -20,7 +20,7 @@ define([
         that.trigger('logout');
       });
     },
-    login: function (data) { // TODO доделать
+    login: function (data) {
       var that = this;
       $.ajax({
         url: this.url,
@@ -37,7 +37,7 @@ define([
             that.trigger('login:ok');
           }
           else if (resp.status === 403) {
-            that.trigger('login:bad')
+            that.trigger('login:bad');
           }
         },
         error: function() {
