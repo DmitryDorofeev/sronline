@@ -6,7 +6,7 @@ define([
     var motionController = {};
     _.extend(motionController, Backbone.Events);
 
-    motionController.listenTo(stageView, 'motion:done', function (interval) {
+    motionController.listenTo(stageView, 'move:done', function (interval) {
         clearInterval(interval);
     });
 

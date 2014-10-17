@@ -38,9 +38,8 @@ define([], function () {
 
     function isReady() {
         var ready = true;
-        for(var k in resourceCache) {
-            if(resourceCache.hasOwnProperty(k) &&
-               !resourceCache[k]) {
+        for (var k in resourceCache) {
+            if(resourceCache.hasOwnProperty(k) && !resourceCache[k]) {
                 ready = false;
             }
         }
