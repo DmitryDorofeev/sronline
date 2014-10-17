@@ -11,6 +11,9 @@ define([
     tagName: 'div',
     className: 'panel',
     model: userModel,
+    events: {
+      'click .js-logout': 'logout'
+    },
     template: function () {
       return tmpl(this.model);
     },
@@ -24,6 +27,9 @@ define([
           this.$el.addClass('panel_logined');
         }
         return this;
+    },
+    logout: function () {
+      userModel.logout();
     }
   });
   

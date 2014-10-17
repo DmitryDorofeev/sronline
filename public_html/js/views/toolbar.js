@@ -15,15 +15,9 @@ define([
       this.$container = $('#toolbar');
       this.listenTo(this.model, 'change', this.render);
     },
-    events: {
-      'click .js-logout': 'logout'
-    },
     render: function () {
       this.$el.html(this.template());
       return this;
-    },
-    logout: function () {
-      userModel.logout();
     }
   });
 

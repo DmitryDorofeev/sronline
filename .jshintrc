@@ -14,6 +14,6 @@
   "quotmark": "single",
   "strict": false,
   "undef": true,
-  "predef" : ["define", "require"],
+  "predef" : ["define", "require", "module"],
   "devel" : true
 }

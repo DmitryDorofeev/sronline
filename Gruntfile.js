@@ -6,7 +6,8 @@ module.exports = function (grunt) {
                 files: ['templates/*.xml'],
                 tasks: ['fest'],
                 options: {
-                    atBegin: true
+                    atBegin: true,
+                    livereload: true
                 }
             },
             sass: {
@@ -15,23 +16,24 @@ module.exports = function (grunt) {
                   'public_html/css/sass/variables.sass',
                   'public_html/css/sass/app.sass',
                   'public_html/css/sass/game.sass',
-                  'public_html/css/sass/fonts.sass'
+                  'public_html/public_html/css/sass/fonts.sass'
                 ],
                 tasks: ['sass'],
                 options: {
-                    atBegin: true
+                    atBegin: true,
+                    livereload: true
                 }
             },
-            requirejs: {
-                files: [
-                    'public_html/js/**/*.js',
-                    'public_html/js/*.js',
-                ],
-                tasks: ['requirejs'],
-                options: {
-                    atBegin: true
-                }
-            },
+//            requirejs: {
+//                files: [
+//                    'js/**/*.js',
+//                    'js/*.js'
+//                ],
+//                tasks: ['requirejs'],
+//                options: {
+//                    atBegin: true
+//                }
+//            },
             server: {
                 files: [
                     'public_html/js/**/*.js',
@@ -43,15 +45,6 @@ module.exports = function (grunt) {
                 }
             }
         },
-        // connect: {
-        //     server: {
-        //         options: {
-        //             livereload: true,
-        //             port: 8080,
-        //             base: 'public_html'
-        //         }
-        //     }
-        // },
         fest: {
             templates: {
                 files: [{
@@ -80,26 +73,24 @@ module.exports = function (grunt) {
         requirejs: {
             compile: {
                 options: {
-                    baseUrl: "public_html/js",
+                    baseUrl: 'js',
                     mainConfigFile: 'public_html/js/config.js',
                     paths: {
                         'requireLib': 'require'
                     },
-                    name: "config",
-                    out: "public_html/build/dist.js",
-                    include: ["requireLib"],
-                    optimize: "uglify"
+                    name: 'config',
+                    out: 'public_html/build/dist.js',
+                    include: ['requireLib'],
+                    optimize: 'uglify'
                 }
             }
         },
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
-    // grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-fest');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
-
     grunt.registerTask('default', ['watch']);
-
+    console.log('azaza');
 };
