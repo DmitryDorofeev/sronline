@@ -16,8 +16,8 @@ define([
             this.el.width = $('body').width();
             this.el.height = $('body').height();
             this.shipPos = {
-                x: this.el.width / 2 - 30,
-                y: this.el.height / 2 - 30
+                x: this.el.width / 2 - 32,
+                y: this.el.height / 2 - 32
             };
             this.inMove = false;
             this.loaded = false;
@@ -32,7 +32,7 @@ define([
                 that.loaded = true;
                 that.image = resources.get('/images/ship.gif');
                 that.ctx.translate(that.el.width / 2, that.el.height / 2);
-                that.ctx.drawImage(that.image, -30, -30, 60, 60);
+                that.ctx.drawImage(that.image, -32, -32, 64, 64);
             });
             return this;
         },
@@ -46,10 +46,10 @@ define([
         },
         mousemove: function (event) {
             if (!(this.inMove) && this.loaded) {
-                this.ctx.clearRect(-30, -30, 60, 60);
+                this.ctx.clearRect(-32, -32, 64, 64);
                 this.ctx.save();
                 this.ctx.rotate(Math.atan2(event.pageY - this.el.height / 2, event.pageX - this.el.width / 2) + Math.PI/2);
-                this.ctx.drawImage(this.image, -30, -30, 60, 60); 
+                this.ctx.drawImage(this.image, -32, -32, 64, 64); 
                 this.ctx.restore();
             }
         }
