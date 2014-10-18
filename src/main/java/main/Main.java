@@ -3,10 +3,7 @@ package main;
 import Users.AccountService;
 import admin.AdminPageServlet;
 import dao.PlayerDao;
-import frontend.LoginServlet;
-import frontend.LogoutServlet;
-import frontend.ScoreServlet;
-import frontend.SignUpServlet;
+import frontend.*;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerList;
@@ -51,6 +48,7 @@ public class Main {
         context.addServlet(new ServletHolder(logout), "/api/v1/auth/logout");
         Servlet admin = new AdminPageServlet();
         context.addServlet(new ServletHolder(admin), "/admin");
+
         Servlet score = new ScoreServlet();
         context.addServlet(new ServletHolder(score), "/api/v1/score");
 

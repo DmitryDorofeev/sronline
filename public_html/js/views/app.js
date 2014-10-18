@@ -23,7 +23,7 @@ define([
         this.$container.append(panelView.render().$el);
       },
       subscribe: function (views) {
-        for (i in views) {
+        for (var i in views) {
           this.listenTo(views[i], 'show', this.add);
         }
       },

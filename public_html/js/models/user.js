@@ -45,7 +45,7 @@ define([
         }
       });
     },
-    signup: function(data) { // TODO допилить
+    signup: function(data) {
       var that = this;
       $.ajax({
         url: '/api/v1/auth/signup',

@@ -2,17 +2,21 @@ define([
     'jquery',
     'backbone',
     'resources',
-    'views/ship'
-], function ($, Backbone, resources, shipView) {
+    'views/ship',
+    'models/ship',
+    'views/sun'
+], function ($, Backbone, resources, shipView, shipModel, sunView) {
     var StageView = Backbone.View.extend({
         tagName: 'canvas',
         id: 'stage',
         className: 'stage',
+        model: shipModel,
         initialize: function () {
+            this.listenTo(sunView, 'move:done', this.moveDone);
             this.listenTo(shipView, 'move:start', this.move);
             this.on('move:done', shipView.moveDone, shipView);
             this.ctx = this.el.getContext('2d');
-            resources.load(['/images/space1.jpg']);
+            resources.load(['images/space1.jpg']);
         },
         render: function() {
             this.el.width = $('body').width();
@@ -21,39 +25,43 @@ define([
             this.ypos = 1500 - (this.el.height / 2);
             var that = this;
             resources.onReady(function () {
-                that.ctx.drawImage(resources.get('/images/space1.jpg'), that.xpos, that.ypos, that.el.width, that.el.height, 0, 0, that.el.width, that.el.height);
+                that.ctx.drawImage(resources.get('images/space1.jpg'), that.xpos, that.ypos, that.el.width, that.el.height, 0, 0, that.el.width, that.el.height);
             });
             this.ctx.stroke();
             return this;
         },
-        move: function (event) {
+        move: function (ship) {
+            this.targetX = this.xpos + (ship.event.pageX - this.el.width / 2);
+            this.targetY = this.ypos + (ship.event.pageY - this.el.height / 2);
             if (this.motion) {
-                clearInterval(this.motion);
+                this.trigger('move:done', 'move');
             }
-            this.targetX = this.xpos + (event.pageX - this.el.width / 2);
-            this.targetY = this.ypos + (event.pageY - this.el.height / 2);
-            var that = this;
-            var xSpeed = (event.pageX - this.el.width / 2) * 2;
-            var ySpeed = (event.pageY - this.el.height / 2) * 2;
-            console.log(xSpeed + ' ' + ySpeed);
-            this.motion = setInterval(function () {
-                    that.ctx.clearRect(0, 0, that.ctx.canvas.width, that.ctx.canvas.height);
-                    that.ctx.drawImage(resources.get('/images/space1.jpg'), that.xpos, that.ypos, that.el.width, that.el.height, 0, 0, that.el.width, that.el.height);
-                    that.ctx.restore();
-                    if (Math.abs(xSpeed) >= Math.abs(ySpeed)) {
-                        that.xpos += xSpeed / Math.abs(xSpeed);
-                        that.ypos += ySpeed / Math.abs(ySpeed) * Math.abs(ySpeed/xSpeed);
-                    }
-                    else {
-                        that.ypos += ySpeed / Math.abs(ySpeed);
-                        that.xpos += xSpeed / Math.abs(xSpeed) * Math.abs(xSpeed/ySpeed);
-                    }
-                    // console.log(that.xpos + ' ' + that.targetX + ' ' + (that.xpos - that.targetX));
-                    if ((Math.abs(that.xpos - that.targetX) < 1) && (Math.abs(that.ypos - that.targetY) < 1)) {
-                        console.log('done');
-                        that.trigger('move:done', that.motion);
-                    }
-            }, 10);
+            this.model.set({
+                targetX: this.targetX, 
+                targetY: this.targetY
+            });
+            this.xSpeed = (ship.event.pageX - this.el.width / 2);
+            this.ySpeed = (ship.event.pageY - this.el.height / 2);
+            this.trigger('move:start', {context: this, callback: this.motion, time: 40, name: 'move'});
+        },
+        motion: function () {
+            this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+            this.ctx.drawImage(resources.get('images/space1.jpg'), this.xpos, this.ypos, this.el.width, this.el.height, 0, 0, this.el.width, this.el.height);
+            this.ctx.restore();
+            if (Math.abs(this.xSpeed) >= Math.abs(this.ySpeed)) {
+                this.xpos += this.xSpeed / Math.abs(this.xSpeed);
+                this.ypos += this.ySpeed / Math.abs(this.ySpeed) * Math.abs(this.ySpeed/this.xSpeed);
+            }
+            else {
+                this.ypos += this.ySpeed / Math.abs(this.ySpeed);
+                this.xpos += this.xSpeed / Math.abs(this.xSpeed) * Math.abs(this.xSpeed/this.ySpeed);
+            }
+            if ((Math.abs(this.xpos - this.targetX) < 1) && (Math.abs(this.ypos - this.targetY) < 1)) {
+                this.trigger('move:done', 'move');
+            }
+        },
+        moveDone: function () {
+            this.trigger('move:done', 'move');
         }
     });
     return new StageView();
