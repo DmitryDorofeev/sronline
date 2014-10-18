@@ -64,6 +64,11 @@ define([
             if ((Math.abs(this.el.width / 2 - Math.abs(this.targetX)) < 2) && (Math.abs(this.el.height / 2 - Math.abs(this.targetY)) < 2)) {
                 this.trigger('move:done', 'moveSun');
             }
+
+            if (this.sunPos.x - this.el.width / 2 < 0 && this.sunPos.x - this.el.width / 2 > -220 && this.sunPos.y - this.el.height / 2 < 0 && this.sunPos.y - this.el.height / 2 > -220) {
+              alert('Guf');
+              this.trigger('move:done', 'moveSun');
+            }
         }
     });
 
