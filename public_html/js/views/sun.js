@@ -50,16 +50,16 @@ define([
             this.ctx.drawImage(resources.get('/images/sun.png'), this.sunPos.x, this.sunPos.y, 220, 220);
             this.ctx.restore();
             if (Math.abs(this.xSpeed) >= Math.abs(this.ySpeed)) {
-                this.sunPos.x -= this.xSpeed / Math.abs(this.xSpeed);
-                this.targetX -= this.xSpeed / Math.abs(this.xSpeed);
-                this.sunPos.y -= this.ySpeed / Math.abs(this.ySpeed) * Math.abs(this.ySpeed/this.xSpeed);
-                this.targetY -= this.ySpeed / Math.abs(this.ySpeed) * Math.abs(this.ySpeed/this.xSpeed);
+                this.sunPos.x -= this.xSpeed / Math.abs(this.xSpeed) *2;
+                this.targetX -= this.xSpeed / Math.abs(this.xSpeed) *2;
+                this.sunPos.y -= this.ySpeed / Math.abs(this.ySpeed) * Math.abs(this.ySpeed/this.xSpeed)*2;
+                this.targetY -= this.ySpeed / Math.abs(this.ySpeed) * Math.abs(this.ySpeed/this.xSpeed)*2;
             }
             else {
-                this.sunPos.y -= this.ySpeed / Math.abs(this.ySpeed);
-                this.targetY -= this.ySpeed / Math.abs(this.ySpeed);
-                this.sunPos.x -= this.ySpeed / Math.abs(this.ySpeed) * Math.abs(this.xSpeed/this.ySpeed);
-                this.targetX -= this.ySpeed / Math.abs(this.ySpeed) * Math.abs(this.xSpeed/this.ySpeed);
+                this.sunPos.y -= this.ySpeed / Math.abs(this.ySpeed)*2;
+                this.targetY -= this.ySpeed / Math.abs(this.ySpeed)*2;
+                this.sunPos.x -= this.xSpeed / Math.abs(this.xSpeed) * Math.abs(this.xSpeed/this.ySpeed)*2;
+                this.targetX -= this.xSpeed / Math.abs(this.xSpeed) * Math.abs(this.xSpeed/this.ySpeed)*2;
             }
             if ((Math.abs(this.el.width / 2 - Math.abs(this.targetX)) < 2) && (Math.abs(this.el.height / 2 - Math.abs(this.targetY)) < 2)) {
                 this.trigger('move:done', 'moveSun');
