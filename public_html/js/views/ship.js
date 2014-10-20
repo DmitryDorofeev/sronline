@@ -2,19 +2,25 @@ define([
     'jquery',
     'backbone',
     'resources',
-    'views/stage'
-], function ($, Backbone, resources, stageView) {
+    'views/stage',
+    'models/ship'
+], function ($, Backbone, resources, stageView, shipModel) {
 
     var ShipView = Backbone.View.extend({
         tagName: 'canvas',
         id: 'ship',
         className: 'ship',
+        model: shipModel,
         initialize: function () {
             // this.listenTo(stageView, 'move:done', this.moveDone);
             this.ctx = this.el.getContext('2d');
             resources.load(['/images/ship.gif']);
             this.el.width = $('body').width();
             this.el.height = $('body').height();
+            this.model.setCenter({
+                x: this.el.width / 2,
+                y: this.el.height / 2
+            });
             this.shipPos = {
                 x: this.el.width / 2 - 35,
                 y: this.el.height / 2 - 35
@@ -37,7 +43,10 @@ define([
             return this;
         },
         move: function (event) {
-            this.trigger('move:start', {event: event, angle: this.angle});
+            this.model.setClickCoords({
+                x: event.pageX,
+                y: event.pageY
+            });
             this.rotate(event);
             this.inMove = true;
         },
