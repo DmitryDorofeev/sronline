@@ -6,16 +6,16 @@ require.config({
         'phaser': 'lib/phaser.min'
     },
     shim: {
-        'backbone': {
-            deps: ['underscore', 'jquery'],
-            exports: 'Backbone'
-        },
-        'underscore': {
-            exports: '_'
-        },
-        'phaser': {
-            exports: 'Phaser'
-        }
+        // 'backbone': {
+        //     deps: ['underscore', 'jquery'],
+        //     exports: 'Backbone'
+        // },
+        // 'underscore': {
+        //     exports: '_'
+        // },
+        // 'phaser': {
+        //     exports: 'Phaser'
+        // }
     }
 });
 

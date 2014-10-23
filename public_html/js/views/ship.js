@@ -55,23 +55,24 @@ define([
         },
         mousemove: function (event) {
             if (!(this.inMove) && this.loaded) {
-                this.ctx.clearRect(-35, -35, 70, 70);
-                this.ctx.save();
+                var ctx = this.ctx;
+                ctx.clearRect(-35, -35, 70, 70);
+                ctx.save();
                 this.angle = Math.atan2(event.pageY - this.el.height / 2, event.pageX - this.el.width / 2) + Math.PI/2;
-                this.ctx.rotate(this.angle);
-                this.ctx.drawImage(this.image, -35, -35, 70, 70);
-                this.ctx.restore();
+                ctx.rotate(this.angle);
+                ctx.drawImage(this.image, -35, -35, 70, 70);
+                ctx.restore();
             }
         },
-        rotate: function () {
-            var that = this;
-            that.ctx.clearRect(-35, -35, 70, 70);
-            that.ctx.save();
+        rotate: function (event) {
+            var ctx = this.ctx;
+            ctx.clearRect(-35, -35, 70, 70);
+            ctx.save();
             var newAngle = Math.atan2(event.pageY - this.el.height / 2, event.pageX - this.el.width / 2) + Math.PI/2;
-            that.angle -= 2;
-            that.ctx.rotate(newAngle);
-            that.ctx.drawImage(that.image, -35, -35, 70, 70);
-            that.ctx.restore();
+            this.angle -= 2;
+            ctx.rotate(newAngle);
+            ctx.drawImage(this.image, -35, -35, 70, 70);
+            ctx.restore();
         }
     });
 

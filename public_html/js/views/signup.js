@@ -20,8 +20,8 @@ define([
       this.$error = this.$el.find('#error');
       return this;
     },
-    signup: function (e) {
-      e.preventDefault();
+    signup: function (event) {
+      event.preventDefault();
       var form = $('#signup-form');
       this.model.signup({
         login: form.find('input[name=login]').val(),

@@ -10,6 +10,7 @@ define([
   var GameView = Backbone.View.extend({
     className: 'game',
     id: 'game',
+    model: userModel,
     events: {
       'click': 'moveShip'
     },
@@ -29,6 +30,7 @@ define([
     show: function () {
       if (userModel.isLogined()) {
         this.trigger('show', this);
+        this.model.set('inGame', true);
       }
       else {
         userModel.trigger('login:bad');

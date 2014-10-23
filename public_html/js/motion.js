@@ -14,7 +14,7 @@ define([
             clearInterval(this.intervals[params.name]);
         }
         this.intervals[params.name] = setInterval(function () {
-            params.callback.call(params.context)
+            params.callback.call(params.context);
         }, params.time);
     };
 
@@ -25,7 +25,7 @@ define([
             }
         }
         else {
-            clearInterval(this.intervals[name]);
+            clearInterval(this.intervals[names]);
         }
     }
 

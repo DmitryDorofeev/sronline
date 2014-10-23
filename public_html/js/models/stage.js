@@ -4,10 +4,6 @@ define([
 ], function (Backbone, shipModel) {
 
   var StageModel = Backbone.Model.extend({
-    defaults: {
-      x: 0,
-      y: 0
-    },
     initialize: function () {
       this.listenTo(shipModel, 'move:start', this.move);
     },

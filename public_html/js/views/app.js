@@ -4,8 +4,9 @@ define([
   'tmpl/app',
   'views/toolbar',
   'views/panel',
-  'models/user'
-], function ($, Backbone, tmpl, toolbarView, panelView, userModel) {
+  'models/user',
+  'views/game'
+], function ($, Backbone, tmpl, toolbarView, panelView, userModel, gameView) {
 
   var AppView = Backbone.View.extend({
       tagName: 'div',
@@ -14,6 +15,7 @@ define([
       initialize: function() {
         this.$container = $('body');
         this.render();
+        window.onresize = gameView.render.bind(gameView);
       },
       template: tmpl,
       render: function () {
